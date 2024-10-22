@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Widget from "./components/Widget";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
+import { useLocalStorage } from "usehooks-ts";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -16,7 +17,10 @@ const layouts = {
 };
 
 function App() {
-  const [currentLayouts, setCurrentLayouts] = useState(layouts);
+  const [currentLayouts, setCurrentLayouts] = useLocalStorage(
+    "layout",
+    layouts
+  );
   const [isEditing, setIsEditing] = useState(false);
 
   const onLayoutChange = (layout: any, layouts: any) => {
